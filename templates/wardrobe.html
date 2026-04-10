@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleSense AI Wardrobe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body data-page="wardrobe">
+  <div class="page-shell">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="dashboard-shell">
+      <aside class="sidebar panel">
+        <div class="sidebar-top">
+          <a class="brand" href="/">StyleSense AI</a>
+          <p class="sidebar-copy">Navigate wardrobe inventory, outfit history, and the broader styling workspace.</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a class="sidebar-link" href="/">Overview</a>
+          <a class="sidebar-link active" href="/wardrobe">Wardrobe</a>
+          <a class="sidebar-link" href="/dashboard">Analytics</a>
+          <a class="sidebar-link" href="/#stylist">AI Stylist</a>
+          <a class="sidebar-link" href="/#tryon">Virtual Try-On</a>
+          <a class="sidebar-link" href="/#discovery">Discovery</a>
+        </nav>
+        <div class="sidebar-actions">
+          <button id="themeToggle" class="theme-toggle" type="button">Theme</button>
+        </div>
+      </aside>
+      <main class="dashboard-main">
+      <header class="topbar panel">
+        <div>
+          <span class="eyebrow">Wardrobe</span>
+          <h2>Saved wardrobe workspace</h2>
+        </div>
+      </header>
+      <section class="hero panel compact-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Wardrobe Intelligence</span>
+          <h1>Your tagged wardrobe, favorites, and outfit usage history.</h1>
+          <p>Browse uploaded pieces, toggle favorites, and track the closet foundation feeding the AI stylist.</p>
+        </div>
+      </section>
+      <section class="section-grid single-column">
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Generated Looks</span>
+            <h2>Choose a full outfit</h2>
+          </div>
+          <p class="status-note">Open a saved outfit, send it to virtual try-on, or add the full look back into your wardrobe.</p>
+          <div id="outfitGallery" class="card-grid skeleton-grid"></div>
+        </article>
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Saved Inventory</span>
+            <h2>Wardrobe database</h2>
+          </div>
+          <form id="wardrobeForm" class="control-grid">
+            <label>Item name<input name="name" placeholder="Oversized Oxford Shirt" required></label>
+            <label>Category<select name="category"><option>Top</option><option>Bottom</option><option>Outerwear</option><option>Shoes</option><option>Accessory</option></select></label>
+            <label>Color<input name="color" placeholder="Stone"></label>
+            <label>Season<select name="season"><option>All Season</option><option>Summer</option><option>Spring</option><option>Winter</option></select></label>
+            <label>Occasion<select name="occasion"><option>Casual</option><option>Smart Casual</option><option>Formal</option><option>Party</option></select></label>
+            <label>Fabric<input name="fabric" placeholder="Cotton Poplin"></label>
+            <label>Pattern<input name="pattern" placeholder="Pinstripe"></label>
+            <label>Image hint<input name="image_hint" placeholder="uploaded shirt photo"></label>
+            <label>Upload image<input name="image" type="file" accept=".png,.jpg,.jpeg,.webp"></label>
+            <button class="primary-button full-span" type="submit">Add To Wardrobe</button>
+          </form>
+          <div id="uploadStatus" class="status-note"></div>
+          <div id="wardrobeGrid" class="card-grid skeleton-grid"></div>
+        </article>
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Timeline</span>
+            <h2>Outfit history</h2>
+          </div>
+          <div class="inline-form history-actions">
+            <button id="clearTimelineButton" class="ghost-button" type="button">Clear Timeline</button>
+          </div>
+          <div id="timelineStatus" class="status-note"></div>
+          <div id="historyList" class="timeline skeleton-grid"></div>
+        </article>
+      </section>
+      </main>
+    </div>
+  </div>
+  <script src="/static/js/style.js"></script>
+</body>
+</html>

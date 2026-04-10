@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleSense AI Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body data-page="home">
+  <div class="page-shell">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="dashboard-shell">
+      <aside class="sidebar panel">
+        <div class="sidebar-top">
+          <a class="brand" href="/">StyleSense AI</a>
+          <p class="sidebar-copy">Fashion operating system for styling, try-on, wardrobe, insights, and discovery.</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a class="sidebar-link active" href="#overview" data-section-target="overview">Overview</a>
+          <a class="sidebar-link" href="#weather-studio" data-section-target="weather-studio">Weather Outfit</a>
+          <a class="sidebar-link" href="#account-hub" data-section-target="account-hub">Accounts</a>
+          <a class="sidebar-link" href="#stylist" data-section-target="stylist">AI Stylist</a>
+          <a class="sidebar-link" href="#tryon" data-section-target="tryon">Virtual Try-On</a>
+          <a class="sidebar-link" href="#wardrobe-manager" data-section-target="wardrobe-manager">Wardrobe</a>
+          <a class="sidebar-link" href="#assistant-tools" data-section-target="assistant-tools">Assistant Tools</a>
+          <a class="sidebar-link" href="#insights-feed" data-section-target="insights-feed">Insights Feed</a>
+          <a class="sidebar-link" href="/wardrobe">Wardrobe Page</a>
+          <a class="sidebar-link" href="/dashboard">Analytics Page</a>
+        </nav>
+        <div class="sidebar-actions">
+          <button id="themeToggle" class="theme-toggle" type="button">Theme</button>
+          <a class="ghost-button" href="/wardrobe">Open Wardrobe</a>
+        </div>
+        <div class="sidebar-ads">
+          <div class="ad-window">
+            <span class="ad-badge">Sponsored</span>
+            <strong>Zara Studio Edit</strong>
+            <p>Minimal tailoring and clean streetwear drops.</p>
+          </div>
+          <div class="ad-window">
+            <span class="ad-badge">Sponsored</span>
+            <strong>Louis Vuitton Capsule</strong>
+            <p>Luxury travel layers and elevated leather goods.</p>
+          </div>
+          <div class="ad-window">
+            <span class="ad-badge">Sponsored</span>
+            <strong>Bewakoof Street Lab</strong>
+            <p>Graphic tees and relaxed fits for daily wear.</p>
+          </div>
+          <div class="ad-window">
+            <span class="ad-badge">Sponsored</span>
+            <strong>Uniqlo Essentials</strong>
+            <p>Smart basics built for capsule wardrobes.</p>
+          </div>
+        </div>
+        <div class="sidebar-status">
+          <span id="authBadge" class="tag">Demo Mode</span>
+        </div>
+      </aside>
+      <main class="dashboard-main">
+      <header class="topbar panel">
+        <div>
+          <span class="eyebrow">Control Center</span>
+          <h2>Style dashboard</h2>
+        </div>
+        <span class="tag">Workspace</span>
+      </header>
+      <section id="overview" class="hero panel feature-panel active" data-feature-panel="overview">
+        <div class="hero-copy">
+          <span class="eyebrow">Full-stack AI fashion platform</span>
+          <h1>Style outfits, preview fits, manage a digital wardrobe, and surface trend intelligence from one place.</h1>
+          <p>This build combines AI styling, smart wardrobe tooling, virtual try-on previews, lookbook generation, social discovery, analytics, and a conversational stylist inside a Flask app.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#stylist" data-section-target="stylist">Generate Outfit</a>
+            <a class="ghost-button" href="#assistant-tools" data-section-target="assistant-tools">Explore Trends</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div id="heroMetrics" class="metric-grid skeleton-grid"></div>
+        </div>
+      </section>
+      <section class="section-grid feature-group" id="weather-studio">
+        <article class="panel feature-panel" data-feature-panel="weather-studio">
+          <div class="section-heading">
+            <span class="eyebrow">Weather Report Outfit Generation</span>
+            <h2>Location-aware outfit generation</h2>
+          </div>
+          <div class="inline-form">
+            <button id="weatherButton" class="primary-button" type="button">Use My Location</button>
+            <button id="notificationButton" class="ghost-button" type="button">Enable Notifications</button>
+          </div>
+          <div id="locationSummary" class="status-note">Allow location access so the UI can personalize your local context.</div>
+          <form id="weatherContextForm" class="control-grid auth-top-gap">
+            <label>Current Weather<select name="weather"><option>Warm</option><option>Hot</option><option>Mild</option><option>Rainy</option><option>Cold</option></select></label>
+            <label>Temperature (C)<input name="temperature" type="number" min="0" max="45" value="27"></label>
+            <label>Feels Like (C)<input name="feels_like" type="number" min="0" max="45" value="29"></label>
+            <label>Weather Note<input name="description" placeholder="Sunny, humid, windy..."></label>
+            <button class="primary-button full-span" type="submit">Generate Local Outfit</button>
+          </form>
+          <div id="weatherStatus" class="status-note">Choose your current conditions and the app will generate a location-aware outfit report.</div>
+          <div id="weatherOutfitResult" class="result-panel skeleton-card">Your location-aware outfit report will appear here when location is available.</div>
+        </article>
+        <article id="account-hub" class="panel feature-panel" data-feature-panel="account-hub">
+          <div class="section-heading">
+            <span class="eyebrow">Accounts</span>
+            <h2>Login or create your style profile</h2>
+          </div>
+          <div id="authSummary" class="result-panel">Signed in as {{ current_user.name }}.</div>
+          <form id="loginForm" class="control-grid">
+            <label>Email<input name="email" type="email" placeholder="demo@stylesense.ai"></label>
+            <label>Password<input name="password" type="password" placeholder="demo123"></label>
+            <button class="ghost-button" type="submit">Login</button>
+          </form>
+          <form id="signupForm" class="control-grid auth-top-gap">
+            <label>Name<input name="name" placeholder="Your name"></label>
+            <label>Email<input name="email" type="email" placeholder="you@example.com"></label>
+            <label>Password<input name="password" type="password" placeholder="Create password"></label>
+            <label>Body Type<select name="body_type"><option>Athletic</option><option>Petite</option><option>Tall</option><option>Curvy</option></select></label>
+            <label>Climate<select name="climate"><option>Temperate</option><option>Warm tropical</option><option>Cold urban</option><option>Dry desert</option></select></label>
+            <button class="primary-button" type="submit">Create Account</button>
+          </form>
+          <button id="logoutButton" class="ghost-button auth-top-gap" type="button">Logout</button>
+        </article>
+        <article class="panel feature-panel" data-feature-panel="live-ai">
+          <div class="section-heading">
+            <span class="eyebrow">Live AI</span>
+            <h2>Real AI readiness</h2>
+          </div>
+          <div class="result-panel loaded">
+            <strong>Optional OpenAI integration</strong>
+            <p>The stylist, chat assistant, and lookbook generator now use live AI automatically when <code>OPENAI_API_KEY</code> is available. Without it, the app falls back to local fashion logic.</p>
+            <p class="status-note">Default demo login: <code>demo@stylesense.ai</code> / <code>demo123</code></p>
+          </div>
+        </article>
+      </section>
+      <section class="section-grid feature-group" id="stylist-section">
+        <article id="stylist" class="panel feature-panel" data-feature-panel="stylist">
+          <div class="section-heading">
+            <span class="eyebrow">Core AI Styling</span>
+            <h2>AI stylist engine</h2>
+          </div>
+          <form id="recommendForm" class="control-grid">
+            <label>Gender<select name="gender"><option>Unspecified</option><option>Women</option><option>Men</option><option>Non-binary</option></select></label>
+            <label>Preferred Fabric<input name="preferred_fabric" placeholder="Linen, cotton, wool, silk"></label>
+            <label>Dress Style<select name="dress_style"><option>Casual</option><option>Smart Casual</option><option>Formal</option><option>Streetwear</option><option>Minimal</option><option>Party</option></select></label>
+            <label>Budget<select name="budget"><option value="500">500</option><option value="1000">1k</option><option value="2000">2k</option><option value="5000+">5k+</option></select></label>
+            <label>Weather<select name="weather"><option>Hot</option><option>Warm</option><option>Mild</option><option>Rainy</option><option>Cold</option></select></label>
+            <label>Occasion<select name="occasion"><option>Casual</option><option>Formal</option><option>Party</option><option>Travel</option><option>Work</option></select></label>
+            <label>Vibe<select name="vibe"><option>Polished</option><option>Relaxed</option><option>Bold</option><option>Minimal</option></select></label>
+            <label>Temperature<input name="temperature" type="range" min="12" max="38" value="28"></label>
+            <label class="full-span">Your outfit idea<input name="style_request" placeholder="Type your opinion or outfit idea every time, like: black oversized streetwear with clean sneakers" required></label>
+            <label class="full-span">Reference image<input name="reference_image" type="file" accept=".png,.jpg,.jpeg,.webp"></label>
+            <div id="stylistReferencePreview" class="image-preview-shell full-span">
+              <span class="status-note">Upload a style image and the AI stylist will use it to shape a similar outfit result.</span>
+            </div>
+            <button class="primary-button full-span" type="submit">Run Styling Engine</button>
+          </form>
+          <div id="recommendResult" class="result-panel skeleton-card">Choose a styling brief to generate a weather-aware outfit plan.</div>
+          <div id="webOutfitSuggestions" class="card-grid skeleton-grid"></div>
+        </article>
+        <article id="tryon" class="panel feature-panel" data-feature-panel="tryon">
+          <div class="section-heading">
+            <span class="eyebrow">Virtual Try-On</span>
+            <h2>Calibrated camera try-on</h2>
+          </div>
+          <div class="camera-shell">
+            <div class="tryon-stage">
+              <video id="cameraPreview" class="camera-preview" autoplay playsinline muted></video>
+              <div id="tryOnOverlay" class="tryon-overlay hidden">
+                <div class="guide-line guide-center"></div>
+                <div class="guide-line guide-shoulder"></div>
+                <div class="guide-line guide-waist"></div>
+                <div id="overlayTop" class="garment-box garment-top"></div>
+                <div id="overlayBottom" class="garment-box garment-bottom"></div>
+              </div>
+            </div>
+            <div class="camera-actions">
+              <button id="cameraButton" class="ghost-button" type="button">Enable Camera Preview</button>
+              <button id="captureFrameButton" class="ghost-button" type="button">Capture Reference Frame</button>
+              <span id="cameraStatus" class="status-note">Camera access is used for live preview only in the browser.</span>
+            </div>
+          </div>
+          <form id="tryOnForm" class="control-grid">
+            <label>Top<input name="top" value="Textured Knit Polo"></label>
+            <label>Bottom<input name="bottom" value="Tailored Pleated Trouser"></label>
+            <label>Avatar<select name="avatar"><option>City Muse</option><option>Runway Edit</option><option>Studio Classic</option></select></label>
+            <label>Body Type<select name="body_type"><option>Athletic</option><option>Petite</option><option>Tall</option><option>Curvy</option></select></label>
+            <label>Fit Preference<select name="fit"><option>True to size</option><option>Relaxed fit</option><option>Tailored fit</option></select></label>
+            <label>Height (cm)<input name="height_cm" type="number" min="140" max="220" value="172"></label>
+            <label>Shoulder Span (cm)<input name="shoulder_cm" type="number" min="32" max="62" value="46"></label>
+            <label>Waist (cm)<input name="waist_cm" type="number" min="56" max="130" value="80"></label>
+            <label>Inseam (cm)<input name="inseam_cm" type="number" min="58" max="105" value="78"></label>
+            <label>Camera Distance<select name="camera_distance"><option>Medium</option><option>Close</option><option>Far</option></select></label>
+            <label>Posture<select name="posture"><option>Neutral</option><option>Straight</option><option>Relaxed</option></select></label>
+            <button class="primary-button full-span" type="submit">Preview Try-On</button>
+          </form>
+          <div id="tryOnResult" class="result-panel skeleton-card">Generate a multi-garment preview to see fit notes, overlay alignment, and simulation quality.</div>
+        </article>
+      </section>
+      <section id="wardrobe-manager" class="section-grid feature-group">
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Digital Wardrobe</span>
+            <h2>Personal wardrobe database</h2>
+          </div>
+          <form id="wardrobeForm" class="control-grid">
+            <label>Item name<input name="name" placeholder="Oversized Oxford Shirt" required></label>
+            <label>Category<select name="category"><option>Top</option><option>Bottom</option><option>Outerwear</option><option>Shoes</option><option>Accessory</option></select></label>
+            <label>Color<input name="color" placeholder="Stone"></label>
+            <label>Season<select name="season"><option>All Season</option><option>Summer</option><option>Spring</option><option>Winter</option></select></label>
+            <label>Occasion<select name="occasion"><option>Casual</option><option>Smart Casual</option><option>Formal</option><option>Party</option></select></label>
+            <label>Fabric<input name="fabric" placeholder="Cotton Poplin"></label>
+            <label>Pattern<input name="pattern" placeholder="Pinstripe"></label>
+            <label>Image hint<input name="image_hint" placeholder="uploaded shirt photo"></label>
+            <label>Upload image<input name="image" type="file" accept=".png,.jpg,.jpeg,.webp"></label>
+            <button class="primary-button full-span" type="submit">Add To Wardrobe</button>
+          </form>
+          <div id="uploadStatus" class="status-note"></div>
+        </article>
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Smart Inventory</span>
+            <h2>Tagged clothing library</h2>
+          </div>
+          <div id="wardrobeGrid" class="card-grid skeleton-grid"></div>
+        </article>
+      </section>
+      <section id="assistant-tools" class="section-grid feature-group">
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">AI Chat</span>
+            <h2>Fashion chatbot assistant</h2>
+          </div>
+          <form id="chatForm" class="chat-form">
+            <input id="chatMessage" name="message" placeholder="Ask about weddings, office fits, vacation packing, or daily styling.">
+            <button class="primary-button" type="submit">Ask Stylist</button>
+          </form>
+          <div id="chatResult" class="result-panel skeleton-card">Your stylist memory and reply will appear here.</div>
+        </article>
+        <article id="discovery" class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Fashion Discovery</span>
+            <h2>Inspiration feed and lookbook generation</h2>
+          </div>
+          <form id="discoverForm" class="inline-form">
+            <input name="query" placeholder="Search minimal, utility, vacation, monochrome">
+            <button class="ghost-button" type="submit">Discover</button>
+          </form>
+          <form id="lookbookForm" class="inline-form">
+            <input name="theme" placeholder="Theme for AI lookbook">
+            <button class="primary-button" type="submit">Generate Lookbook</button>
+          </form>
+          <div id="discoverResult" class="card-grid skeleton-grid"></div>
+          <div id="lookbookResult" class="result-panel skeleton-card">Prompt-ready AI lookbook concepts will appear here.</div>
+        </article>
+      </section>
+      <section id="insights-feed" class="section-grid feature-group">
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Platform Coverage</span>
+            <h2>Feature architecture</h2>
+          </div>
+          <div id="featureGroups" class="feature-groups skeleton-grid"></div>
+        </article>
+        <article class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Recent Looks</span>
+            <h2>Outfit history timeline</h2>
+          </div>
+          <div class="inline-form history-actions">
+            <button id="clearTimelineButton" class="ghost-button" type="button">Clear Timeline</button>
+          </div>
+          <div id="timelineStatus" class="status-note"></div>
+          <div id="historyList" class="timeline skeleton-grid"></div>
+        </article>
+      </section>
+      </main>
+    </div>
+  </div>
+  <script src="/static/js/style.js"></script>
+</body>
+</html>
